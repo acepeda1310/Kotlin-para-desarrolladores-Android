@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.adrisoft.apptiempo.R
 import com.adrisoft.apptiempo.adaptadores.AdaptadorListaMeteo
+import org.jetbrains.anko.find
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val listaMeteo = findViewById(R.id.lista_meteo) as RecyclerView
+        val listaMeteo: RecyclerView = find(R.id.lista_meteo)
         listaMeteo.layoutManager = LinearLayoutManager(this)
         listaMeteo.adapter = AdaptadorListaMeteo(items)
     }
