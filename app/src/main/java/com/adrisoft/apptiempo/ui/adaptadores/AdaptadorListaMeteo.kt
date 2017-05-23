@@ -1,4 +1,4 @@
-package com.adrisoft.apptiempo.adaptadores
+package com.adrisoft.apptiempo.ui.adaptadores
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ class AdaptadorListaMeteo(val items: List<String>) :
         RecyclerView.Adapter<AdaptadorListaMeteo.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
-            ViewHolder{
+            ViewHolder {
         return ViewHolder(TextView(parent.context))
     }
 

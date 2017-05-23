@@ -1,12 +1,16 @@
-package com.adrisoft.apptiempo.actividades
+package com.adrisoft.apptiempo.ui.actividades
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.adrisoft.apptiempo.R
-import com.adrisoft.apptiempo.adaptadores.AdaptadorListaMeteo
+import com.adrisoft.apptiempo.ui.adaptadores.AdaptadorListaMeteo
+import com.adrisoft.apptiempo.data.Consulta
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.find
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,5 +31,13 @@ class MainActivity : AppCompatActivity() {
         val listaMeteo: RecyclerView = find(R.id.lista_meteo)
         listaMeteo.layoutManager = LinearLayoutManager(this)
         listaMeteo.adapter = AdaptadorListaMeteo(items)
+
+        val url = "http://api.openweathermap.org/data/2.5/forecast/daily?" +
+                "APPID=15646a06818f61f7b8d7823ca833e1ce&q=94043&mode=json&units=metric&cnt=7"
+
+        doAsync {
+            Consulta(url).run()
+            uiThread { longToast("Consulta realizada") }
+        }
     }
 }
