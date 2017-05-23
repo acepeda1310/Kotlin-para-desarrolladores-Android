@@ -3,12 +3,13 @@ package com.adrisoft.apptiempo.ui.adaptadores
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
+import com.adrisoft.apptiempo.dominio.modelo.ListaPrevision
 
 /**
  * Created by Adrián on 22/05/2017.
  */
 
-class AdaptadorListaMeteo(val items: List<String>) :
+class AdaptadorListaMeteo(val previsionSemanal: ListaPrevision) :
         RecyclerView.Adapter<AdaptadorListaMeteo.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
@@ -18,10 +19,12 @@ class AdaptadorListaMeteo(val items: List<String>) :
 
     override fun onBindViewHolder(holder: ViewHolder,
                                   position: Int) {
-        holder.textView.text = items[position]
+        with(previsionSemanal.dailyForecast[position]) {
+            holder.textView.text = "$date - $description - $high/$low"
+        }
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = previsionSemanal.dailyForecast.size
 
     class ViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 }
