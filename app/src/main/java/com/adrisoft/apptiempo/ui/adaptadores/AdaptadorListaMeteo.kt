@@ -19,12 +19,12 @@ class AdaptadorListaMeteo(val previsionSemanal: ListaPrevision) :
 
     override fun onBindViewHolder(holder: ViewHolder,
                                   position: Int) {
-        with(previsionSemanal.dailyForecast[position]) {
+        with(previsionSemanal[position]) {
             holder.textView.text = "$date - $description - $high/$low"
         }
     }
 
-    override fun getItemCount(): Int = previsionSemanal.dailyForecast.size
+    override fun getItemCount(): Int = previsionSemanal.size
 
     class ViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 }
