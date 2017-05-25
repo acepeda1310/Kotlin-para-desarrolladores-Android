@@ -12,4 +12,5 @@ data class ListaPrevision(val city: String, val country: String, val dailyForeca
     operator fun get(position: Int): Prevision = dailyForecast[position]
 }
 
-data class Prevision(val date: String, val description: String, val high: Int, val low: Int)
+data class Prevision(val date: String, val description: String, val high: Int, val low: Int,
+                     val iconUrl: String)

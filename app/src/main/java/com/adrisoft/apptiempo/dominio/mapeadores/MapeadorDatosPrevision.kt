@@ -27,11 +27,13 @@ class MapeadorDatosPrevision {
 
     private fun convertirElementoPrevisionADominio(prevision: Prevision): ModeloPrevision {
         return ModeloPrevision(convertirFecha(prevision.dt), prevision.weather[0].description,
-                prevision.temp.max.toInt(), prevision.temp.min.toInt())
+                prevision.temp.max.toInt(), prevision.temp.min.toInt(), generarUrlIcono(prevision.weather[0].icon))
     }
 
     private fun convertirFecha(fecha: Long): String {
         val df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
         return df.format(fecha)
     }
+
+    private fun generarUrlIcono(codigoIcono: String): String = "http://openweathermap.org/img/w/$codigoIcono.png"
 }

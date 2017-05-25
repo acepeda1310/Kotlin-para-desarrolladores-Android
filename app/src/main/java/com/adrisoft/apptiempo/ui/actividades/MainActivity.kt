@@ -7,8 +7,10 @@ import android.support.v7.widget.RecyclerView
 import com.adrisoft.apptiempo.R
 import com.adrisoft.apptiempo.ui.adaptadores.AdaptadorListaMeteo
 import com.adrisoft.apptiempo.dominio.comandos.ComandoConsultaPrevision
+import com.adrisoft.apptiempo.dominio.modelo.Prevision
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.find
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +25,12 @@ class MainActivity : AppCompatActivity() {
         doAsync {
             val resultado = ComandoConsultaPrevision("94043").ejecutar()
             uiThread {
-                listaMeteo.adapter = AdaptadorListaMeteo(resultado)
+                listaMeteo.adapter = AdaptadorListaMeteo(resultado,
+                        object : AdaptadorListaMeteo.OnItemClickListener {
+                            override fun invoke(prevision: Prevision) {
+                                toast(prevision.date)
+                            }
+                })
             }
         }
     }
