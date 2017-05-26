@@ -19,7 +19,7 @@ import org.w3c.dom.Text
  */
 
 class AdaptadorListaMeteo(val previsionSemanal: ListaPrevision,
-                          val itemClick: AdaptadorListaMeteo.OnItemClickListener) :
+                          val itemClick: (Prevision) -> Unit) :
         RecyclerView.Adapter<AdaptadorListaMeteo.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
@@ -35,7 +35,7 @@ class AdaptadorListaMeteo(val previsionSemanal: ListaPrevision,
 
     override fun getItemCount(): Int = previsionSemanal.size
 
-    class ViewHolder(view: View, val itemClick: OnItemClickListener) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, val itemClick: (Prevision) -> Unit) : RecyclerView.ViewHolder(view) {
 
         private val iconoView = view.find<ImageView>(R.id.icono)
         private val fechaView = view.find<TextView>(R.id.fecha)
@@ -53,9 +53,5 @@ class AdaptadorListaMeteo(val previsionSemanal: ListaPrevision,
                 itemView.setOnClickListener {itemClick(this)}
             }
         }
-    }
-
-    interface OnItemClickListener {
-        operator fun invoke(prevision: Prevision)
     }
 }
