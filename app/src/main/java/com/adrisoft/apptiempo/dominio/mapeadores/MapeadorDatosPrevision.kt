@@ -35,5 +35,5 @@ class MapeadorDatosPrevision {
         return df.format(fecha)
     }
 
-    private fun generarUrlIcono(codigoIcono: String): String = "http://openweathermap.org/img/w/$codigoIcono.png"
+    private fun generarUrlIcono(codigoIcono: String) = "http://openweathermap.org/img/w/$codigoIcono.png"
 }

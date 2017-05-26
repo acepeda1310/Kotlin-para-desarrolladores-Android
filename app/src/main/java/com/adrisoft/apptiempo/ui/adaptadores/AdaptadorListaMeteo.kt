@@ -33,7 +33,7 @@ class AdaptadorListaMeteo(val previsionSemanal: ListaPrevision,
         holder.enlazarPrevision(previsionSemanal[position])
     }
 
-    override fun getItemCount(): Int = previsionSemanal.size
+    override fun getItemCount() = previsionSemanal.size
 
     class ViewHolder(view: View, val itemClick: (Prevision) -> Unit) : RecyclerView.ViewHolder(view) {
 
