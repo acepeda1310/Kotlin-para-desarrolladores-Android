@@ -4,18 +4,17 @@ package com.adrisoft.apptiempo.dominio.mapeadores
  * Created by Adrián on 23/05/2017.
  */
 
-import com.adrisoft.apptiempo.data.Prevision
-import com.adrisoft.apptiempo.data.ResultadoPrevision
+import com.adrisoft.apptiempo.data.server.Prevision
+import com.adrisoft.apptiempo.data.server.ResultadoPrevision
 import com.adrisoft.apptiempo.dominio.modelo.ListaPrevision
-import java.text.DateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 import com.adrisoft.apptiempo.dominio.modelo.Prevision as ModeloPrevision
 
 class MapeadorDatosPrevision {
 
-    fun convertirDesdeModeloDatos(prevision: ResultadoPrevision): ListaPrevision {
-        return ListaPrevision(prevision.city.name, prevision.city.country, convertirListaPrevisionADominio(prevision.list))
+    fun convertirDesdeModeloDatos(codPostal: Long, prevision: ResultadoPrevision) = with(prevision) {
+        ListaPrevision(codPostal, prevision.city.name, prevision.city.country, convertirListaPrevisionADominio(prevision.list))
     }
 
     private fun convertirListaPrevisionADominio(lista: List<Prevision>): List<ModeloPrevision> {
@@ -25,14 +24,9 @@ class MapeadorDatosPrevision {
         }
     }
 
-    private fun convertirElementoPrevisionADominio(prevision: Prevision): ModeloPrevision {
-        return ModeloPrevision(convertirFecha(prevision.dt), prevision.weather[0].description,
-                prevision.temp.max.toInt(), prevision.temp.min.toInt(), generarUrlIcono(prevision.weather[0].icon))
-    }
-
-    private fun convertirFecha(fecha: Long): String {
-        val df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
-        return df.format(fecha)
+    private fun convertirElementoPrevisionADominio(prevision: Prevision) = with(prevision) {
+        ModeloPrevision(dt, weather[0].description, temp.max.toInt(), temp.min.toInt(),
+                generarUrlIcono(weather[0].icon))
     }
 
     private fun generarUrlIcono(codigoIcono: String) = "http://openweathermap.org/img/w/$codigoIcono.png"

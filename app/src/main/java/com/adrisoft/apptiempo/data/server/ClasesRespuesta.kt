@@ -1,4 +1,4 @@
-package com.adrisoft.apptiempo.data
+package com.adrisoft.apptiempo.data.server
 
 /**
  * Created by Adrián on 23/05/2017.

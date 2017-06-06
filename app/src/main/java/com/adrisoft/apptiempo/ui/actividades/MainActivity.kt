@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
         listaMeteo.layoutManager = LinearLayoutManager(this)
 
         doAsync {
-            val resultado = ComandoConsultaPrevision("94043").ejecutar()
+            val resultado = ComandoConsultaPrevision(94043).ejecutar()
             uiThread {
-                val adaptador = AdaptadorListaMeteo(resultado) { toast(it.date) }
+                val adaptador = AdaptadorListaMeteo(resultado, { toast(it.description) })
                 listaMeteo.adapter = adaptador
             }
         }

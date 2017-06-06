@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.adrisoft.apptiempo.R
 import com.adrisoft.apptiempo.dominio.modelo.Prevision
 import com.adrisoft.apptiempo.dominio.modelo.ListaPrevision
-import com.adrisoft.apptiempo.ui.utiles.ctx
+import com.adrisoft.apptiempo.extensiones.ctx
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.elemento_prevision.view.*
 

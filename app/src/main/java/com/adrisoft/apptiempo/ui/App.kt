@@ -5,7 +5,7 @@ package com.adrisoft.apptiempo.ui
  */
 
 import android.app.Application
-import com.adrisoft.apptiempo.ui.utiles.DelegacionesExt
+import com.adrisoft.apptiempo.extensiones.DelegacionesExt
 
 class App : Application() {
 
