@@ -4,6 +4,7 @@ package com.adrisoft.apptiempo.data.db
  * Created by Adrián on 05/06/2017.
  */
 
+import com.adrisoft.apptiempo.dominio.datasource.PrevisionDataSource
 import com.adrisoft.apptiempo.dominio.modelo.ListaPrevision
 import com.adrisoft.apptiempo.extensiones.clear
 import com.adrisoft.apptiempo.extensiones.parseList
@@ -14,9 +15,9 @@ import org.jetbrains.anko.db.select
 import java.util.*
 
 class PrevisionDb(val previsionDBHelper: PrevisionDBHelper = PrevisionDBHelper.instance,
-                  val dataMapper: DbDataMapper = DbDataMapper()) {
+                  val dataMapper: DbDataMapper = DbDataMapper()) : PrevisionDataSource{
 
-    fun consultarPrevisionPorCodPostal(codPostal: Long, fecha: Long) = previsionDBHelper.use {
+    override fun consultaPrevisionPorCodPostal(codPostal: Long, fecha: Long) = previsionDBHelper.use {
 
         val consultaDiaria = "${TablaPrevisionDiaria.ID_CIUDAD} = ? AND ${TablaPrevisionDiaria.FECHA} >= ?"
         val previsionDiaria = select(TablaPrevisionDiaria.NOMBRE)

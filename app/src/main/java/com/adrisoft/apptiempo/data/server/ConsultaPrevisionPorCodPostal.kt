@@ -7,7 +7,7 @@ package com.adrisoft.apptiempo.data.server
 import com.google.gson.Gson
 import java.net.URL
 
-class ConsultaPrevision(val codPostal: Long) {
+class ConsultaPrevisionPorCodPostal(val codPostal: Long, val gson: Gson = Gson()) {
 
     companion object {
         private val APP_ID = "15646a06818f61f7b8d7823ca833e1ce"
@@ -17,6 +17,6 @@ class ConsultaPrevision(val codPostal: Long) {
 
     fun ejecutar(): ResultadoPrevision {
         val previsionJsonStr = URL(URL_COMPLETA + codPostal).readText()
-        return Gson().fromJson(previsionJsonStr, ResultadoPrevision::class.java)
+        return gson.fromJson(previsionJsonStr, ResultadoPrevision::class.java)
     }
 }
